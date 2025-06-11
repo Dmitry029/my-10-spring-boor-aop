@@ -11,12 +11,22 @@ public class TrafficFortuneServiceImpl implements TrafficFortuneService{
         // simulate a delay
 
         try {
-            TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
         // return a fortune
         return "Expect heavy traffic this morning";
+    }
+
+    @Override
+    public String getFortune(boolean tripWire) {
+
+        if (tripWire) {
+            throw new RuntimeException("Major accident! Highway is closed!");
+        }
+
+        return getFortune();
     }
 }
